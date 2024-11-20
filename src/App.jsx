@@ -2,6 +2,8 @@ import { Suspense, lazy } from 'react'
 import { Navigation } from './components/Navigation'
 import { Hero } from './components/Hero'
 import { LoadingSpinner } from './components/LoadingSpinner'
+import { SkipLink } from './components/SkipLink'
+import { SEO } from './components/SEO'
 
 // Lazy load other components
 const About = lazy(() => import('./components/About'))
@@ -16,8 +18,11 @@ const Contact = lazy(() => import('./components/Contact'))
 function App() {
   return (
     <>
+      <SEO />
+      <SkipLink />
       <Navigation />
-      <main>
+      <main id="main-content" tabIndex="-1">
+        <h1 className="sr-only">Osteria Luna - Fine Italian Dining</h1>
         <Hero />
         <Suspense fallback={<LoadingSpinner />}>
           <About />
@@ -30,6 +35,11 @@ function App() {
           <Contact />
         </Suspense>
       </main>
+      <footer role="contentinfo" className="bg-rich-black text-cream py-8">
+        <div className="container-custom">
+          <p className="text-center"> {new Date().getFullYear()} Osteria Luna. All rights reserved.</p>
+        </div>
+      </footer>
     </>
   )
 }
