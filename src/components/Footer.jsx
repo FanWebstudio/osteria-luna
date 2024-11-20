@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaInstagram, FaFacebookF, FaTripadvisor } from 'react-icons/fa';
@@ -46,7 +47,7 @@ const hours = [
   { day: 'Monday', time: 'Closed' }
 ];
 
-function Footer() {
+export default function Footer() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -102,9 +103,9 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Social & Newsletter */}
+          {/* Social Links */}
           <div className="space-y-6">
-            <h4 className="font-accent text-lg text-gold">Connect</h4>
+            <h4 className="font-accent text-lg text-gold">Follow Us</h4>
             <div className="flex space-x-4">
               {socialLinks.map(({ name, href, icon: Icon }) => (
                 <a
@@ -112,21 +113,16 @@ function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="
-                    w-10 h-10 rounded-full border border-gold/20
-                    flex items-center justify-center
-                    text-gold hover:text-cream hover:border-gold
-                    transition-colors duration-300
-                  "
+                  className="p-2 text-cream/80 hover:text-cream transition-colors"
+                  aria-label={name}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span className="sr-only">{name}</span>
+                  <Icon className="w-6 h-6" />
                 </a>
               ))}
             </div>
             <div className="pt-4 mt-6 border-t border-cream/10">
               <p className="text-sm text-cream/60">
-                © {new Date().getFullYear()} Osteria Luna. All rights reserved.
+                {new Date().getFullYear()} Osteria Luna. All rights reserved.
               </p>
             </div>
           </div>
@@ -135,5 +131,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

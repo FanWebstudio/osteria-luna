@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export function Hero() {
+export default function Hero() {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}

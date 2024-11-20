@@ -11,76 +11,23 @@ const wineCategories = [
 
 const wines = {
   sparkling: [
-    {
-      name: 'Prosecco Superiore DOCG',
-      producer: 'Col Vetoraz',
-      region: 'Valdobbiadene, Italy',
-      description: 'Elegant and crisp with notes of green apple and white flowers',
-      glass: '18',
-      bottle: '72',
-    },
-    {
-      name: 'Franciacorta Rosé',
-      producer: "Ca' del Bosco",
-      region: 'Lombardy, Italy',
-      description: 'Delicate pink bubbles with hints of wild berries and brioche',
-      glass: '22',
-      bottle: '88',
-    },
+    { id: 's1', name: 'Prosecco Superiore DOCG', year: 'NV', region: 'Veneto', price: '45' },
+    { id: 's2', name: 'Franciacorta', year: '2019', region: 'Lombardy', price: '65' },
+    { id: 's3', name: 'Ferrari Trento DOC', year: '2018', region: 'Trentino', price: '75' },
   ],
   white: [
-    {
-      name: 'Gavi di Gavi',
-      producer: 'La Scolca',
-      region: 'Piedmont, Italy',
-      description: 'Mineral-driven with citrus and almond notes',
-      glass: '16',
-      bottle: '64',
-    },
-    {
-      name: 'Verdicchio dei Castelli di Jesi',
-      producer: 'Bucci',
-      region: 'Marche, Italy',
-      description: 'Complex and structured with stone fruit and herbal notes',
-      glass: '15',
-      bottle: '60',
-    },
+    { id: 'w1', name: 'Verdicchio dei Castelli di Jesi', year: '2020', region: 'Marche', price: '45' },
+    { id: 'w2', name: 'Gavi di Gavi', year: '2021', region: 'Piedmont', price: '55' },
+    { id: 'w3', name: 'Soave Classico', year: '2020', region: 'Veneto', price: '40' },
   ],
   red: [
-    {
-      name: 'Barolo',
-      producer: 'Vietti',
-      region: 'Piedmont, Italy',
-      description: 'Full-bodied with notes of tar, roses, and dark fruits',
-      glass: '32',
-      bottle: '128',
-    },
-    {
-      name: 'Brunello di Montalcino',
-      producer: 'Biondi-Santi',
-      region: 'Tuscany, Italy',
-      description: 'Elegant and complex with cherry, leather, and spice notes',
-      glass: '35',
-      bottle: '140',
-    },
+    { id: 'r1', name: 'Barolo DOCG', year: '2018', region: 'Piedmont', price: '95' },
+    { id: 'r2', name: 'Brunello di Montalcino', year: '2017', region: 'Tuscany', price: '85' },
+    { id: 'r3', name: 'Amarone della Valpolicella', year: '2016', region: 'Veneto', price: '90' },
   ],
   dessert: [
-    {
-      name: 'Vin Santo',
-      producer: 'Avignonesi',
-      region: 'Tuscany, Italy',
-      description: 'Sweet and intense with honey, apricot, and almond notes',
-      glass: '20',
-      bottle: '95',
-    },
-    {
-      name: 'Moscato d\'Asti',
-      producer: 'G.D. Vajra',
-      region: 'Piedmont, Italy',
-      description: 'Light and aromatic with peach and honeysuckle notes',
-      glass: '14',
-      bottle: '56',
-    },
+    { id: 'd1', name: 'Vin Santo', year: '2015', region: 'Tuscany', price: '60' },
+    { id: 'd2', name: 'Moscato d\'Asti', year: '2020', region: 'Piedmont', price: '40' },
   ],
 };
 
@@ -127,20 +74,18 @@ function WineList() {
         >
           {wines[activeCategory].map((wine, index) => (
             <div
-              key={index}
+              key={wine.id}
               className="border-b border-gold/20 pb-8 last:border-b-0"
             >
               <div className="flex justify-between items-baseline gap-4 mb-2">
                 <div>
                   <h3 className="font-display text-xl text-cream">{wine.name}</h3>
-                  <p className="font-accent text-gold/80">{wine.producer}</p>
+                  <p className="font-accent text-gold/80">{wine.year} • {wine.region}</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-accent text-gold">Glass ${wine.glass}</p>
-                  <p className="font-accent text-gold">Bottle ${wine.bottle}</p>
+                  <p className="font-accent text-gold">Glass ${wine.price}</p>
                 </div>
               </div>
-              <p className="text-sm text-cream/70 italic mb-2">{wine.region}</p>
               <p className="text-body">{wine.description}</p>
             </div>
           ))}

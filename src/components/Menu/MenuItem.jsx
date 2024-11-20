@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export function MenuItem({ name, description, price }) {
+export default function MenuItem({ name, description, price }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

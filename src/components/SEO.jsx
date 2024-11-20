@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-export function SEO({
+export default function SEO({
   title = 'Osteria Luna | Fine Italian Dining',
   description = 'Experience authentic Italian cuisine in an elegant setting at Osteria Luna. Fresh pasta, seasonal ingredients, and an extensive wine list.',
   image = '/images/og-image.jpg',

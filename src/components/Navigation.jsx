@@ -13,7 +13,7 @@ const navLinks = [
   { name: 'Contact', href: '#contact' }
 ];
 
-export function Navigation() {
+export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef(null);

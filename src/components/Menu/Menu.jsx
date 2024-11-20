@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { MenuItem } from './MenuItem';
+import MenuItem from './MenuItem';
 
 const menuCategories = [
   { id: 'antipasti', name: 'Antipasti' },
@@ -81,8 +81,12 @@ const menuItems = {
   ],
 };
 
-function Menu() {
+export default function Menu() {
   const [activeCategory, setActiveCategory] = useState('antipasti');
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
 
   return (
     <section id="menu" className="section-padding bg-rich-black">
@@ -112,13 +116,14 @@ function Menu() {
         {/* Menu Items */}
         <motion.div
           key={activeCategory}
+          ref={ref}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
-          className="grid gap-12 max-w-3xl mx-auto"
+          className="grid gap-8 max-w-4xl mx-auto"
         >
-          {menuItems[activeCategory].map((item, index) => (
-            <MenuItem key={index} {...item} />
+          {menuItems[activeCategory].map((item) => (
+            <MenuItem key={item.name} {...item} />
           ))}
         </motion.div>
 
@@ -134,5 +139,3 @@ function Menu() {
     </section>
   );
 }
-
-export default Menu;

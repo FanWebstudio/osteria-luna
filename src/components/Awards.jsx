@@ -1,6 +1,6 @@
 import { FaStar, FaAward, FaTrophy } from 'react-icons/fa';
 
-function Awards() {
+export default function Awards() {
   return (
     <div className="flex justify-center items-center space-x-12">
       <div className="flex flex-col items-center space-y-2 opacity-80 hover:opacity-100 transition-opacity">
@@ -18,5 +18,3 @@ function Awards() {
     </div>
   );
 }
-
-export default Awards;

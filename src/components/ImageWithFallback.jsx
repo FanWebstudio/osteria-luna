@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function ImageWithFallback({
+export default function ImageWithFallback({
   src,
   fallbackSrc = '/images/placeholder.jpg',
   alt,

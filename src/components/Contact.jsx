@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
@@ -18,6 +19,40 @@ function Contact() {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // TODO: Replace with actual API endpoint
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="section-padding bg-rich-black">
@@ -97,89 +132,77 @@ function Contact() {
             transition={{ duration: 0.5 }}
             className="bg-rich-black/30 p-8"
           >
-            <form className="space-y-6">
-              <div className="space-y-4">
-                <h3 className="font-display text-2xl text-cream">Make a Reservation</h3>
-                <p className="text-body">
-                  For the best experience, please make your reservation at least 24 hours in advance.
-                </p>
-              </div>
-
-              <div className="grid gap-4">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-cream">
+                  Name
+                </label>
                 <input
                   type="text"
-                  placeholder="Full Name"
-                  className="form-input bg-rich-black/50 border-gold/20 text-cream placeholder:text-cream/50 focus:border-gold"
+                  name="name"
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
+                  className="mt-1 block w-full rounded-md bg-cream/5 border-cream/10 text-cream shadow-sm focus:border-gold focus:ring-gold"
                 />
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="form-input bg-rich-black/50 border-gold/20 text-cream placeholder:text-cream/50 focus:border-gold"
-                    required
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Phone"
-                    className="form-input bg-rich-black/50 border-gold/20 text-cream placeholder:text-cream/50 focus:border-gold"
-                    required
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <input
-                    type="date"
-                    className="form-input bg-rich-black/50 border-gold/20 text-cream focus:border-gold"
-                    required
-                  />
-                  <select
-                    className="form-select bg-rich-black/50 border-gold/20 text-cream focus:border-gold"
-                    required
-                  >
-                    <option value="">Select Time</option>
-                    <option value="17:00">5:00 PM</option>
-                    <option value="17:30">5:30 PM</option>
-                    <option value="18:00">6:00 PM</option>
-                    <option value="18:30">6:30 PM</option>
-                    <option value="19:00">7:00 PM</option>
-                    <option value="19:30">7:30 PM</option>
-                    <option value="20:00">8:00 PM</option>
-                    <option value="20:30">8:30 PM</option>
-                    <option value="21:00">9:00 PM</option>
-                  </select>
-                </div>
-
-                <select
-                  className="form-select bg-rich-black/50 border-gold/20 text-cream focus:border-gold"
-                  required
-                >
-                  <option value="">Number of Guests</option>
-                  {[...Array(7)].map((_, i) => (
-                    <option key={i + 1} value={i + 1}>
-                      {i + 1} {i === 0 ? 'Guest' : 'Guests'}
-                    </option>
-                  ))}
-                </select>
-
-                <textarea
-                  placeholder="Special Requests (Optional)"
-                  rows="3"
-                  className="form-textarea bg-rich-black/50 border-gold/20 text-cream placeholder:text-cream/50 focus:border-gold"
-                ></textarea>
               </div>
-
-              <button
-                type="submit"
-                className="w-full btn-primary"
-              >
-                Request Reservation
-              </button>
-
-              <p className="text-sm text-cream/60 text-center">
-                By making a reservation you agree to our reservation policy
-              </p>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-cream">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 block w-full rounded-md bg-cream/5 border-cream/10 text-cream shadow-sm focus:border-gold focus:ring-gold"
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-cream">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="mt-1 block w-full rounded-md bg-cream/5 border-cream/10 text-cream shadow-sm focus:border-gold focus:ring-gold"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-cream">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  id="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 block w-full rounded-md bg-cream/5 border-cream/10 text-cream shadow-sm focus:border-gold focus:ring-gold"
+                />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-gold hover:bg-gold/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold disabled:opacity-50"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </div>
+              {submitStatus === 'success' && (
+                <div className="text-green-400 text-sm">Message sent successfully!</div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="text-red-400 text-sm">Failed to send message. Please try again.</div>
+              )}
             </form>
           </motion.div>
         </div>

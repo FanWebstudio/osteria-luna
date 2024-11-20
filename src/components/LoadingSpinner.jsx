@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export function LoadingSpinner() {
+export default function LoadingSpinner() {
   return (
     <div className="flex flex-col justify-center items-center min-h-[200px] space-y-4">
       <motion.div

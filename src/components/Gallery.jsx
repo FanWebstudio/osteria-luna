@@ -64,7 +64,7 @@ function GalleryImage({ image }) {
   );
 }
 
-function Gallery() {
+export default function Gallery() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -99,5 +99,3 @@ function Gallery() {
     </section>
   );
 }
-
-export default Gallery;
