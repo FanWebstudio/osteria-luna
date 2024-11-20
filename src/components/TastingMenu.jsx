@@ -88,8 +88,8 @@ function TastingMenu() {
           ))}
         </div>
 
-        <div className="text-center mt-16 space-y-6">
-          <p className="text-body italic">
+        <div className="text-center mt-16">
+          <p className="text-body italic mb-8">
             Our tasting menus require a minimum of two guests and must be ordered by the entire table
           </p>
           <a href="#reserve" className="btn-primary">

@@ -7,8 +7,8 @@ import { focusManagement } from '../utils/a11y';
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Menu', href: '#menu' },
-  { name: 'Wine', href: '#wine' },
-  { name: 'Events', href: '#events' },
+  { name: 'Wine', href: '#wine-list' },
+  { name: 'Events', href: '#private-events' },
   { name: 'Gallery', href: '#gallery' },
   { name: 'Press', href: '#press' },
   { name: 'Contact', href: '#contact' }

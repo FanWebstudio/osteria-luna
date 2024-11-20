@@ -113,12 +113,9 @@ function PrivateEvents() {
             <p className="text-body italic">
               For inquiries about private events and custom experiences, please contact our events team
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex justify-center">
               <a href="#contact" className="btn-primary">
                 Contact Events Team
-              </a>
-              <a href="/events-brochure.pdf" className="btn-secondary" target="_blank" rel="noopener noreferrer">
-                Download Events Brochure
               </a>
             </div>
           </div>
