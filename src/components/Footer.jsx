@@ -55,26 +55,26 @@ export default function Footer() {
 
   return (
     <footer className="bg-rich-black text-cream">
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:py-20">
+      <div className="container-custom py-16 sm:py-20">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 justify-items-center lg:justify-items-start"
         >
           {/* Logo & Description */}
-          <div className="space-y-6">
+          <div className="space-y-6 text-center lg:text-left max-w-sm">
             <h3 className="font-display text-2xl text-gold">Osteria Luna</h3>
-            <p className="text-cream/80 max-w-sm">
+            <p className="text-cream/80">
               Experience the essence of Italian fine dining in the heart of Napa Valley. 
               Crafting memorable moments through exceptional cuisine and ambiance.
             </p>
           </div>
 
           {/* Hours */}
-          <div className="space-y-6">
-            <h4 className="font-accent text-lg text-gold">Hours</h4>
+          <div className="space-y-6 w-full max-w-sm">
+            <h4 className="font-accent text-lg text-gold text-center lg:text-left">Hours</h4>
             <ul className="space-y-3">
               {hours.map(({ day, time }) => (
                 <li key={day} className="flex justify-between items-center text-sm">
@@ -86,8 +86,8 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="space-y-6">
-            <h4 className="font-accent text-lg text-gold">Contact</h4>
+          <div className="space-y-6 w-full max-w-sm">
+            <h4 className="font-accent text-lg text-gold text-center lg:text-left">Contact</h4>
             <ul className="space-y-4">
               {contactInfo.map(({ text, href, icon: Icon }) => (
                 <li key={text}>
@@ -104,9 +104,9 @@ export default function Footer() {
           </div>
 
           {/* Social Links */}
-          <div className="space-y-6">
+          <div className="space-y-6 w-full max-w-sm text-center lg:text-left">
             <h4 className="font-accent text-lg text-gold">Follow Us</h4>
-            <div className="flex space-x-4">
+            <div className="flex justify-center lg:justify-start space-x-4">
               {socialLinks.map(({ name, href, icon: Icon }) => (
                 <a
                   key={name}

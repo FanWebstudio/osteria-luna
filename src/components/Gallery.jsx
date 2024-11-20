@@ -71,7 +71,7 @@ export default function Gallery() {
   });
 
   return (
-    <section className="py-20 bg-cream">
+    <section id="gallery" className="py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           ref={ref}
