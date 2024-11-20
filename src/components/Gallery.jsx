@@ -71,7 +71,7 @@ export default function Gallery() {
   });
 
   return (
-    <section id="gallery" className="py-20 bg-cream">
+    <section id="gallery" className="py-20 bg-rich-black">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           ref={ref}
@@ -81,7 +81,7 @@ export default function Gallery() {
           className="space-y-12"
         >
           <div className="text-center">
-            <h2 className="text-4xl font-display text-rich-black">
+            <h2 className="text-4xl font-display text-cream">
               Gallery
             </h2>
           </div>
