@@ -13,7 +13,8 @@ const eventSpaces = [
       'Sound system',
       'Ambient lighting'
     ],
-    imageUrl: '/images/placeholder-terrace.jpg'
+    imageUrl: '/images/terrace.jpg',
+    imageAlt: 'Elegant rooftop terrace with city views, featuring comfortable seating and ambient lighting'
   },
   {
     name: 'Sala Privata',
@@ -26,7 +27,8 @@ const eventSpaces = [
       'AV equipment',
       'Adjustable lighting'
     ],
-    imageUrl: '/images/placeholder-private-room.jpg'
+    imageUrl: '/images/private-room.jpg',
+    imageAlt: 'Luxurious private dining room with elegant table setting and warm lighting'
   },
   {
     name: 'Il Giardino',
@@ -39,7 +41,8 @@ const eventSpaces = [
       'Herb garden',
       'Fountain feature'
     ],
-    imageUrl: '/images/placeholder-garden.jpg'
+    imageUrl: '/images/garden.jpg',
+    imageAlt: 'Beautiful outdoor garden dining area with string lights and lush greenery'
   }
 ];
 
@@ -68,12 +71,12 @@ function PrivateEvents() {
               className="bg-rich-black/30 rounded-lg overflow-hidden group"
             >
               <div className="aspect-w-16 aspect-h-9 overflow-hidden">
-                <div className="w-full h-full bg-warm-gray/20 group-hover:scale-105 transition-transform duration-500">
-                  {/* Image placeholder - replace with actual images */}
-                  <div className="w-full h-full flex items-center justify-center text-gold/50">
-                    [Image: {space.name}]
-                  </div>
-                </div>
+                <img
+                  src={space.imageUrl}
+                  alt={space.imageAlt}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
               </div>
 
               <div className="p-6 space-y-4">
