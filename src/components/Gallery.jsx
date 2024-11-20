@@ -1,103 +1,100 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Zoom from 'react-medium-image-zoom';
-import 'react-medium-image-zoom/dist/styles.css';
 
 const galleryImages = [
   {
-    src: '/images/placeholder-interior.jpg',
-    alt: 'Restaurant interior with warm lighting and elegant table settings',
-    category: 'Interior'
+    src: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1200',
+    alt: 'Elegant dining room with warm lighting and sophisticated decor'
   },
   {
-    src: '/images/placeholder-dish1.jpg',
-    alt: 'Signature pasta dish with fresh truffles',
-    category: 'Cuisine'
+    src: 'https://images.unsplash.com/photo-1481931098730-318b6f776db0?q=80&w=1200',
+    alt: 'Fresh pasta with shaved truffles'
   },
   {
-    src: '/images/placeholder-wine.jpg',
-    alt: 'Wine cellar featuring rare Italian vintages',
-    category: 'Wine Cellar'
+    src: 'https://images.unsplash.com/photo-1528823872057-9c018a7a7553?q=80&w=1200',
+    alt: 'Extensive wine cellar collection'
   },
   {
-    src: '/images/placeholder-terrace.jpg',
-    alt: 'Rooftop terrace with city views',
-    category: 'Spaces'
+    src: 'https://images.unsplash.com/photo-1579027989536-b7b1f875659b?q=80&w=1200',
+    alt: 'Seared scallops with seasonal vegetables'
   },
   {
-    src: '/images/placeholder-dish2.jpg',
-    alt: 'Seasonal seafood creation',
-    category: 'Cuisine'
+    src: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1200',
+    alt: 'Private dining room with chandelier'
   },
   {
-    src: '/images/placeholder-bar.jpg',
-    alt: 'Elegant bar with craft cocktails',
-    category: 'Bar'
+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1200',
+    alt: 'Artisanal cocktail preparation'
   },
   {
-    src: '/images/placeholder-private.jpg',
-    alt: 'Private dining room setup',
-    category: 'Private Events'
+    src: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1200',
+    alt: 'Chocolate dessert with gold leaf'
   },
   {
-    src: '/images/placeholder-dessert.jpg',
-    alt: 'Artisanal dessert presentation',
-    category: 'Cuisine'
-  },
-  {
-    src: '/images/placeholder-garden.jpg',
-    alt: 'Outdoor garden dining area',
-    category: 'Spaces'
+    src: 'https://images.unsplash.com/photo-1515539408953-9403f070ad2e?q=80&w=1200',
+    alt: 'Outdoor terrace dining area'
   }
 ];
+
+function GalleryImage({ image }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className="aspect-square overflow-hidden">
+      <div 
+        className={`
+          absolute inset-0 bg-rich-black/5
+          ${!isLoaded ? 'opacity-100' : 'opacity-0'}
+          transition-opacity duration-300
+        `}
+      />
+      <img
+        src={image.src}
+        alt={image.alt}
+        className={`
+          w-full h-full object-cover
+          transition-transform duration-500 hover:scale-110
+          ${isLoaded ? 'opacity-100' : 'opacity-0'}
+        `}
+        onLoad={() => setIsLoaded(true)}
+        loading="lazy"
+      />
+    </div>
+  );
+}
 
 function Gallery() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   return (
-    <section id="gallery" className="section-padding bg-rich-black">
-      <div className="container-custom">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="heading-lg">Gallery</h2>
-          <p className="font-accent text-gold">A Visual Journey Through Osteria Luna</p>
-        </div>
-
-        <div 
+    <section className="py-20 bg-cream">
+      <div className="max-w-7xl mx-auto px-4">
+        <motion.div
           ref={ref}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-12"
         >
-          {galleryImages.map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="aspect-w-4 aspect-h-3 overflow-hidden bg-warm-gray/20">
-                <Zoom>
-                  {/* Replace div with actual img when images are available */}
-                  <div className="w-full h-full flex items-center justify-center text-gold/50 group-hover:scale-105 transition-transform duration-500">
-                    [Image: {image.alt}]
-                  </div>
-                </Zoom>
-              </div>
-              <div className="mt-4 space-y-1">
-                <p className="font-accent text-gold/80 text-sm">{image.category}</p>
-                <p className="text-cream/80 text-sm italic">{image.alt}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+          <div className="text-center">
+            <h2 className="text-4xl font-display text-rich-black">
+              Gallery
+            </h2>
+          </div>
 
-        <div className="text-center mt-16">
-          <p className="text-body italic mb-8">
-            Follow us on Instagram <a href="https://instagram.com/osterialuna" className="text-gold hover:text-gold/80 transition-colors">@osterialuna</a> for daily visual updates
-          </p>
-        </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {galleryImages.map((image, index) => (
+              <GalleryImage
+                key={image.src}
+                image={image}
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
